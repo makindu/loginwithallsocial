@@ -1,0 +1,41 @@
+<div class="jumbotron bg-transparent text-center">
+  <div *ngIf="!user" class="card text-center">
+    <h6 class="card-header">
+      Connexion avec Reseaux
+    </h6>
+    <div class="card-block">
+      <h4 class="card-title">Pas encore Connecte</h4>
+      <p class="card-text">Connecter avec</p>
+    </div>
+    <div class="card-block">
+      <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span
+          class="fab fa-google"></span></button>
+      <button class="btn btn-social-icon btn-facebook mx-1" (click)="signInWithFB()"><span
+          class="fab fa-facebook"></span></button>
+      <button class="btn btn-social-icon btn-amazon mx-1" (click)="signInWithAmazon()"><span
+          class="fab fa-amazon"></span></button>
+      <button class="btn btn-social-icon btn-amazon mx-1" (click)="signInWithVK()"><span
+          class="fab fa-vk"></span></button>
+      <button class="btn btn-social-icon btn-microsoft mx-1" (click)="signInWithMicrosoft()"><span
+          class="fab fa-microsoft"></span></button>
+    </div>
+  </div>
+  <div *ngIf="user" class="card text-center">
+    <h6 class="card-header">
+      Informations de l'Utilisateur Connecte
+    </h6>
+    <div class="card-block"></div>
+    <img *ngIf="user.photoUrl" class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+    <div class="card-block">
+      <h4 class="card-title">{{ user.name }}</h4>
+      <p class="card-text">{{ user.email }}</p>
+      <p class="card-text">Connecte via {{ user.provider }}</p>
+    </div>
+    <div class="card-block">
+      <button class="btn btn-danger" (click)="signOut()">Deconnexion</button>
+    </div>
+    <div class="card-block" *ngIf="user.provider === GoogleLoginProvider.PROVIDER_ID">
+      <button class="btn" (click)="refreshGoogleToken()">Rafraichir la connexion Google</button>
+    </div>
+  </div>
+</div>
